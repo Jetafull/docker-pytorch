@@ -74,7 +74,7 @@ RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     libgtk2.0-0 \
     libcanberra-gtk-module \
  && sudo rm -rf /var/lib/apt/lists/*
-RUN conda install -y -c menpo opencv3 \
+RUN conda install -y -c menpo opencv3 seaborn numba tqdm scipy matplotlib pandas jupyterlab scikit-learn scikit-image \
  && conda clean -ya
 
 # Set the default command to python3
