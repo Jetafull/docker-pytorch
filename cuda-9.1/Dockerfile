@@ -73,9 +73,12 @@ RUN pip install graphviz
 RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     libgtk2.0-0 \
     libcanberra-gtk-module \
+    vim gcc libsm6 libxext6 \
  && sudo rm -rf /var/lib/apt/lists/*
-RUN conda install -y -c menpo opencv3 seaborn numba tqdm scipy matplotlib pandas jupyterlab scikit-learn scikit-image \
- && conda clean -ya
+#RUN conda install -y -c menpo opencv3 seaborn numba tqdm scipy matplotlib pandas jupyterlab scikit-learn scikit-image \
+# && conda clean -ya
+RUN pip install --no-cache-dir menpo opencv3 seaborn numba tqdm scipy matplotlib pandas jupyterlab scikit-learn scikit-image \
+    msgpack cython bcolz isoweek
 
 # Set the default command to python3
 CMD ["python3"]
