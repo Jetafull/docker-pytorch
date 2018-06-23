@@ -27,6 +27,7 @@ USER user
 # All users can use /home/user as their home directory
 ENV HOME=/home/user
 RUN chmod 777 /home/user
+COPY ./conf/.vimrc $HOME 
 
 # Install Miniconda
 RUN curl -so ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.4.10-Linux-x86_64.sh \
@@ -36,7 +37,7 @@ RUN curl -so ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.4.1
 ENV PATH=/home/user/miniconda/bin:$PATH
 
 # Install HDF5 Python bindings
-RUN pip install --no-cache-dir \
+RUN pip install --upgrade pip && pip install --no-cache-dir \
     Cython \
     numba \
     opencv-python \
@@ -56,6 +57,10 @@ RUN pip install --no-cache-dir \
     torchvision \
     keras \
     tensorflow-gpu
+
+# vim, vundle
+RUN git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim \
+ && vim +PluginInstall +qall 
 
 # Install Torchnet, a high-level framework for PyTorch
 #RUN pip install git+https://github.com/pytorch/tnt.git@master
