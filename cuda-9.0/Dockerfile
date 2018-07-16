@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     libsm6 \
     libxext6 \
     libx11-6 \ 
+    tmux \
  && apt-get install -y --reinstall build-essential \
  && rm -rf /var/lib/apt/lists/*
 
@@ -81,4 +82,4 @@ RUN pip install --no-cache-dir \
 #RUN pip install git+https://github.com/pytorch/tnt.git@master
 
 # Set the default command to python3
-CMD ["python3"]
+CMD ["/bin/bash"]
